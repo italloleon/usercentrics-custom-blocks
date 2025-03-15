@@ -12,17 +12,18 @@ namespace ItalloLeonardo\UsercentricsCustomBlocks;
  * @package    Usercentrics_Custom_Blocks
  * @author     Itallo Leonardo
  */
-class UsercentricsCustomBlocks {
-
+class UsercentricsCustomBlocks
+{
     private string $plugin_path;
     private string $blocks_path;
 
     public const BLOCKS = [
         'faq-item',
-        'faq-list'  
+        'faq-list'
     ];
 
-    public function __construct(string $plugin_path) {
+    public function __construct(string $plugin_path)
+    {
         $this->plugin_path = $plugin_path;
         $this->blocks_path = $plugin_path . 'build/';
     }
@@ -34,11 +35,13 @@ class UsercentricsCustomBlocks {
      * @since    1.0.0
      * @return   void
      */
-    public function init() {
+    public function init()
+    {
         // Register hooks
-        add_action('init', [$this, 'register_blocks']);
-        // add_action('enqueue_block_editor_assets', [$this, 'enqueue_editor_assets']);
-        // add_action('wp_enqueue_scripts', [$this, 'enqueue_frontend_assets']);
+        add_action('init', [$this, 'registerBlocks']);
+        // TODO: Uncomment when ready
+        // add_action('enqueue_block_editor_assets', [$this, 'enqueueEditorAssets']);
+        // add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendAssets']);
     }
 
     /**
@@ -47,18 +50,18 @@ class UsercentricsCustomBlocks {
      * @since    1.0.0
      * @return   void
      */
-    public function register_blocks() {
+    public function registerBlocks()
+    {
         // Register blocks here
         if (function_exists('register_block_type')) {
             $block_list = self::BLOCKS;
             $blocks_path = $this->blocks_path;
 
             error_log(print_r($block_list, true));
-        
+
             foreach ($block_list as $block) {
                 register_block_type($this->blocks_path . $block . '/block.json');
             }
-
         }
     }
 
@@ -68,7 +71,8 @@ class UsercentricsCustomBlocks {
      * @since    1.0.0
      * @return   void
      */
-    public function enqueue_editor_assets() {
+    public function enqueueEditorAssets()
+    {
         // Enqueue scripts and styles for the editor
     }
 
@@ -78,7 +82,8 @@ class UsercentricsCustomBlocks {
      * @since    1.0.0
      * @return   void
      */
-    public function enqueue_frontend_assets() {
+    public function enqueueFrontendAssets()
+    {
         // Enqueue scripts and styles for the frontend
     }
-} 
+}
