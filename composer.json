@@ -1,0 +1,24 @@
+{
+    "name": "itallo.leonardo/usercentrics-custom-blocks",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "ItalloLeonardo\\UsercentricsCustomBlocks\\": "src/"
+        }
+    },
+    "classmap": [
+        "src/"
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "ItalloLeonardo\\UsercentricsCustomBlocks\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Itallo Leonardo",
+            "email": "itallolaraujo@gmail.com"
+        }
+    ],
+    "require": {}
+}

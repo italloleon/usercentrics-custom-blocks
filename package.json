@@ -1,0 +1,18 @@
+{
+  "name": "usercentrics-custom-blocks",
+  "version": "1.0.0",
+  "description": "A plugin created to register custom Gutenberg blocks for the Usercentrics company challenge for the Senior WordPress Developer role.",
+  "scripts": {
+    "build:blocks": "wp-scripts build --webpack-copy-php --source-path=assets/blocks",
+    "start:blocks": "wp-scripts start --webpack-copy-php --source-path=assets/blocks",
+    "start": "wp-scripts start",
+    "create-block": "cd ./assets/blocks && npx @wordpress/create-block@latest --no-plugin --namespace usercentrics-custom-blocks"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@9.15.2",
+  "devDependencies": {
+    "@wordpress/scripts": "^30.13.0"
+  }
+}
