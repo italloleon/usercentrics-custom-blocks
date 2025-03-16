@@ -5,6 +5,8 @@
   "scripts": {
     "build:blocks": "wp-scripts build --webpack-copy-php --source-path=assets/blocks",
     "start:blocks": "wp-scripts start --webpack-copy-php --source-path=assets/blocks",
+    "lint:js": "wp-scripts lint-js ./assets/**/*.js --fix ",
+    "lint:css": "wp-scripts lint-style ./assets/**/*.{scss,css} --fix",
     "start": "wp-scripts start",
     "create-block": "cd ./assets/blocks && npx @wordpress/create-block@latest --no-plugin --namespace usercentrics-custom-blocks"
   },

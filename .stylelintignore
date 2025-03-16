@@ -1,0 +1,14 @@
+# Ignore JavaScript files
+assets/js/*.js
+
+# Ignore PHP files
+assets/helpers/*.php
+assets/blocks/*/render.php
+
+# Ignore JSON files
+assets/blocks/*/block.json
+
+# Ignore JavaScript files in blocks
+assets/blocks/*/edit.js
+assets/blocks/*/index.js
+assets/blocks/*/view.js 
