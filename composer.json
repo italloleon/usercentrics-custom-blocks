@@ -40,7 +40,11 @@
             "pre-commit": [
                 "echo 'Running PHP Code Sniffer...'",
                 "./vendor/bin/phpcbf --standard=phpcs.xml",
-                "./vendor/bin/phpcs --standard=phpcs.xml"
+                "./vendor/bin/phpcs --standard=phpcs.xml",
+                "echo 'Running JavaScript linter...'",
+                "pnpm run lint:js",
+                "echo 'Running CSS linter...'",
+                "pnpm run lint:css"
             ]
         }
     }

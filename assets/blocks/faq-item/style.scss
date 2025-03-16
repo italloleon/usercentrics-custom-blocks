@@ -5,8 +5,69 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-usercentrics-custom-blocks-faq-item {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+@use "../../scss/variables" as *;
+
+.uc-faq-item {
+	background-color: var(--wp--preset--color--white);
+	border-radius: 0.5rem;
+	box-shadow: 0 1px 2px #00000008;
+
+	&__header {
+		position: relative;
+		cursor: pointer;
+		display: flex;
+		list-style-position: inside;
+		justify-content: space-between;
+		align-items: center;
+		padding-inline: var(--spacing-lg);
+		padding-block: var(--spacing-lg);
+
+		&::after {
+			content: "";
+			display: inline-block;
+			position: absolute;
+			right: var(--spacing-lg);
+			width: 2rem;
+			height: 4px;
+			background-color: var(--wp--preset--color--black);
+		}
+
+		&::before {
+			content: "";
+			display: inline-block;
+			position: absolute;
+			right: var(--spacing-lg);
+			width: 2rem;
+			height: 4px;
+			background-color: var(--wp--preset--color--black);
+			transform: rotate(-90deg);
+			transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+		}
+
+		[open] &::before {
+			transform: rotate(0deg);
+			opacity: 0;
+		}
+	}
+
+	&__title {
+		display: inline-block;
+
+	}
+
+	&__content {
+		padding-inline: 1.5rem;
+		padding-block-end: 1.5rem;
+		transition: all 0.3s ease-in-out;
+
+		ul {
+			padding: 0;
+			margin: 0;
+			list-style-position: inside;
+		}
+
+		p {
+			margin-block: var(--spacing-md);
+		}
+	}
 }

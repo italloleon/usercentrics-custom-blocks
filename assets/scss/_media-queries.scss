@@ -1,0 +1,25 @@
+// Media Query Mixins - Mobile First Approach
+
+// Small devices (tablets, 768px and up)
+@mixin tablet {
+
+	@media (min-width: 768px) {
+		@content;
+	}
+}
+
+// Medium devices (desktops, 992px and up)
+@mixin desktop {
+
+	@media (min-width: 992px) {
+		@content;
+	}
+}
+
+// Large devices (large desktops, 1200px and up)
+@mixin large-desktop {
+
+	@media (min-width: 1200px) {
+		@content;
+	}
+}

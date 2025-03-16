@@ -1,12 +1,40 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+// Import media queries
+@use "../../scss/media-queries.scss" as *;
 
-.wp-block-usercentrics-custom-blocks-faq-list {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+.uc-faq-list {
+	display: grid;
+	gap: 1rem;
+	// 12 col grid
+	grid-template-columns: repeat(2, 1fr);
+
+	@include tablet {
+		grid-template-columns: repeat(12, 1fr);
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+	}
+
+	&__title {
+		grid-column: 1 / -1;
+
+		@include tablet {
+			// takes 4 columns
+			grid-column: 1 / 5;
+		}
+	}
+
+	&__items {
+		display: flex;
+		flex-direction: column;
+		gap: var(--spacing-md);
+		list-style: none;
+		padding: 0;
+		grid-column: 1 / -1;
+
+		@include tablet {
+			grid-column: 5 / 13;
+		}
+	}
 }
