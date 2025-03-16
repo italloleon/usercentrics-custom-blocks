@@ -1,0 +1,47 @@
+{
+    "name": "itallo.leonardo/usercentrics-custom-blocks",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "ItalloLeonardo\\UsercentricsCustomBlocks\\": "src/"
+        }
+    },
+    "classmap": [
+        "src/"
+    ],
+    "autoload-dev": {
+        "psr-4": {
+            "ItalloLeonardo\\UsercentricsCustomBlocks\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Itallo Leonardo",
+            "email": "itallolaraujo@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "brainmaestro/composer-git-hooks": "^2.8"
+    },
+    "scripts": {
+        "phpcs": "phpcs",
+        "phpcbf": "phpcbf",
+        "post-install-cmd": [
+            "vendor/bin/cghooks add --ignore-lock"
+        ],
+        "post-update-cmd": [
+            "vendor/bin/cghooks update"
+        ]
+    },
+    "extra": {
+        "hooks": {
+            "pre-commit": [
+                "echo 'Running PHP Code Sniffer...'",
+                "./vendor/bin/phpcbf --standard=phpcs.xml",
+                "./vendor/bin/phpcs --standard=phpcs.xml"
+            ]
+        }
+    }
+}
