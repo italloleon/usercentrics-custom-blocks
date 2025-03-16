@@ -21,6 +21,10 @@
 		align-items: center;
 		padding-inline: var(--spacing-lg);
 		padding-block: var(--spacing-lg);
+		&::-webkit-details-marker {
+			opacity: 0;
+	   }
+
 
 		&::after {
 			content: "";
@@ -52,6 +56,7 @@
 
 	&__title {
 		display: inline-block;
+		max-width: 85%;
 
 	}
 
