@@ -4,6 +4,12 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-usercentrics-custom-blocks-faq-list {
-	border: 1px dotted #f00;
+.uc-faq-list {
+
+	&.is-selected {
+
+		.uc-faq-list__items {
+			padding-block-end: 1.5rem;
+		}
+	}
 }

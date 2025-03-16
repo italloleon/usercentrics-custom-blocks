@@ -22,10 +22,12 @@ class UsercentricsCustomBlocks
         'faq-list'
     ];
 
+    private const BLOCKS_PATH = 'build/';
+
     public function __construct(string $plugin_path)
     {
         $this->plugin_path = $plugin_path;
-        $this->blocks_path = $plugin_path . 'build/';
+        $this->blocks_path = $plugin_path . self::BLOCKS_PATH;
     }
 
 
