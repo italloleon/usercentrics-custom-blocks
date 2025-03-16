@@ -29,9 +29,10 @@ define( 'USERCENTRICS_CUSTOM_BLOCKS_PATH', plugin_dir_path( __FILE__ ) );
 define( 'USERCENTRICS_CUSTOM_BLOCKS_URL', plugin_dir_url( __FILE__ ) );
 
 use ItalloLeonardo\UsercentricsCustomBlocks\UsercentricsCustomBlocks;
-
+use ItalloLeonardo\UsercentricsCustomBlocks\BlockScriptLoader;
 function usercentrics_custom_blocks_init() {
-	$usercentrics_custom_blocks = new UsercentricsCustomBlocks(USERCENTRICS_CUSTOM_BLOCKS_PATH);
+	$faq_block_loader = new BlockScriptLoader('usercentrics-custom-blocks/faq-item');
+	$usercentrics_custom_blocks = new UsercentricsCustomBlocks(USERCENTRICS_CUSTOM_BLOCKS_PATH, $faq_block_loader);
 
 	$usercentrics_custom_blocks->init();
 }
