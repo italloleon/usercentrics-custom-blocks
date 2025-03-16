@@ -22,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     text: faqItemContentText
                 }
             })
-
-            console.log(faqSchema);
         })
+        ldJsonScript.textContent = JSON.stringify(faqSchema);
     }
 });
