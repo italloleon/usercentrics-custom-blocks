@@ -8,7 +8,8 @@
     "lint:js": "wp-scripts lint-js ./assets/**/*.js --fix ",
     "lint:css": "wp-scripts lint-style ./assets/**/*.{scss,css} --fix",
     "start": "wp-scripts start",
-    "create-block": "cd ./assets/blocks && npx @wordpress/create-block@latest --no-plugin --namespace usercentrics-custom-blocks"
+    "create-block": "cd ./assets/blocks && npx @wordpress/create-block@latest --no-plugin --namespace usercentrics-custom-blocks",
+    "zip": "wp-scripts plugin-zip"
   },
   "keywords": [],
   "author": "",
@@ -16,5 +17,13 @@
   "packageManager": "pnpm@9.15.2",
   "devDependencies": {
     "@wordpress/scripts": "^30.13.0"
-  }
+  },
+  "files": [
+    "usercentrics-custom-blocks.php",
+    "build",
+    "vendor",
+    "src",
+    "composer.json",
+    "package.json"
+  ]
 }

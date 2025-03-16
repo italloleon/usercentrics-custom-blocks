@@ -29,10 +29,16 @@
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
         "post-install-cmd": [
-            "vendor/bin/cghooks add --ignore-lock"
+            "@install-hooks"
         ],
         "post-update-cmd": [
-            "vendor/bin/cghooks update"
+            "@update-hooks"
+        ],
+        "install-hooks": [
+            "[ -f vendor/bin/cghooks ] && vendor/bin/cghooks add --ignore-lock || echo 'Skipping git hooks installation (dev dependencies not installed)'"
+        ],
+        "update-hooks": [
+            "[ -f vendor/bin/cghooks ] && vendor/bin/cghooks update || echo 'Skipping git hooks update (dev dependencies not installed)'"
         ]
     },
     "extra": {

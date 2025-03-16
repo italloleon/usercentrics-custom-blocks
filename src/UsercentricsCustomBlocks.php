@@ -16,6 +16,7 @@ class UsercentricsCustomBlocks
 {
     private string $plugin_path;
     private string $blocks_path;
+    private string $plugin_url;
 
     public const BLOCKS = [
         'faq-item',
@@ -28,6 +29,7 @@ class UsercentricsCustomBlocks
     {
         $this->plugin_path = $plugin_path;
         $this->blocks_path = $plugin_path . self::BLOCKS_PATH;
+        $this->plugin_url = plugin_dir_url(dirname(__FILE__));
     }
 
 
@@ -41,9 +43,6 @@ class UsercentricsCustomBlocks
     {
         // Register hooks
         add_action('init', [$this, 'registerBlocks']);
-        // TODO: Uncomment when ready
-        // add_action('enqueue_block_editor_assets', [$this, 'enqueueEditorAssets']);
-        // add_action('wp_enqueue_scripts', [$this, 'enqueueFrontendAssets']);
     }
 
     /**
@@ -58,34 +57,9 @@ class UsercentricsCustomBlocks
         if (function_exists('register_block_type')) {
             $block_list = self::BLOCKS;
             $blocks_path = $this->blocks_path;
-
-            error_log(print_r($block_list, true));
-
             foreach ($block_list as $block) {
                 register_block_type($this->blocks_path . $block . '/block.json');
             }
         }
-    }
-
-    /**
-     * Enqueue editor assets.
-     *
-     * @since    1.0.0
-     * @return   void
-     */
-    public function enqueueEditorAssets()
-    {
-        // Enqueue scripts and styles for the editor
-    }
-
-    /**
-     * Enqueue frontend assets.
-     *
-     * @since    1.0.0
-     * @return   void
-     */
-    public function enqueueFrontendAssets()
-    {
-        // Enqueue scripts and styles for the frontend
     }
 }
