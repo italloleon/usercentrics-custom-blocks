@@ -21,8 +21,14 @@
 		align-items: center;
 		padding-inline: var(--spacing-lg);
 		padding-block: var(--spacing-lg);
+
+		&::marker {
+			content: "";
+			display: none;
+	   }
+
 		&::-webkit-details-marker {
-			opacity: 0;
+			display: none;
 	   }
 
 
