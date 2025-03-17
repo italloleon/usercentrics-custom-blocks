@@ -6,7 +6,7 @@
 	"title": "Faq List",
 	"category": "widgets",
 	"icon": "smiley",
-	"description": "Example block scaffolded with Create Block tool.",
+	"description": "Display a collapsible list of frequently asked questions.",
 	"example": {},
 	"supports": {
 		"html": false
