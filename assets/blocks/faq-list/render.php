@@ -10,8 +10,13 @@ $block_wrapper_attributes = get_block_wrapper_attributes([
 	"class" => $block_name,
 ]);
 ?>
-<section itemscope itemtype="https://schema.org/FAQPage" <?php echo $block_wrapper_attributes; ?>>
-	<h2 class="<?php echo $block_name; ?>__title">
+<section 
+    aria-labelledby="faq-heading-<?php echo esc_attr(uniqid()); ?>" 
+    itemscope 
+    itemtype="https://schema.org/FAQPage" 
+    <?php echo $block_wrapper_attributes; ?>
+>
+	<h2 id="faq-heading-<?php echo esc_attr(uniqid()); ?>" class="<?php echo $block_name; ?>__title">
 		<?php echo $title; ?>
 	</h2>
 	<ul class="<?php echo $block_name; ?>__items">
