@@ -60,10 +60,10 @@ class UsercentricsCustomBlocks
             }
         }
     }
-    
+
     /**
      * Register a single block.
-     * 
+     *
      * This method is separated to make testing easier.
      *
      * @since    1.0.0
@@ -78,9 +78,9 @@ class UsercentricsCustomBlocks
 
         register_block_type($this->blocks_path . $block . '/block.json');
     }
-    
+
     /**
-     * 
+     *
      * @param string $path File path to check.
      * @return bool Whether the file exists.
      */
@@ -88,9 +88,9 @@ class UsercentricsCustomBlocks
     {
         return file_exists($path);
     }
-    
+
     /**
-     * 
+     *
      * @param string $function Function name to check.
      * @return bool Whether the function exists.
      */

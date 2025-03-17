@@ -29,10 +29,10 @@ class TestSimple extends \WP_Mock\Tools\TestCase
 
         // Call the mocked function
         $theme = wp_get_theme();
-        
+
         // Assert that it returns the mock value
         $this->assertEquals('mocked-theme', $theme);
-        
+
         // Check that all expected methods were called
         $this->assertConditionsMet();
     }
@@ -44,11 +44,11 @@ class TestSimple extends \WP_Mock\Tools\TestCase
     {
         // Set up the action expectation
         WP_Mock::expectActionAdded('init', 'test_function');
-        
+
         // Call the actual function with the expectation
         add_action('init', 'test_function');
-        
+
         // Assert that all hooks were properly added
         $this->assertHooksAdded();
     }
-} 
+}

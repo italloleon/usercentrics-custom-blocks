@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Bootstrap the plugin unit testing environment.
  */

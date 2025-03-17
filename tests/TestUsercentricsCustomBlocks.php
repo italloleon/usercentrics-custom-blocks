@@ -4,14 +4,14 @@ namespace ItalloLeonardo\UsercentricsCustomBlocks\Tests;
 
 use ItalloLeonardo\UsercentricsCustomBlocks\UsercentricsCustomBlocks;
 use WP_Mock;
-use \WP_Mock\Tools\TestCase;
+use WP_Mock\Tools\TestCase;
 
 class TestUsercentricsCustomBlocks extends TestCase
 {
     public function setUp(): void
     {
         WP_Mock::setUp();
-        
+
         WP_Mock::userFunction('plugin_dir_url', [
             'return' => 'http://example.com/wp-content/plugins/usercentrics-custom-blocks/'
         ]);
@@ -32,7 +32,7 @@ class TestUsercentricsCustomBlocks extends TestCase
         WP_Mock::expectActionAdded('init', [$plugin, 'registerBlocks']);
 
         $plugin->init();
-        
+
         $this->assertConditionsMet();
     }
 
@@ -53,23 +53,25 @@ class TestUsercentricsCustomBlocks extends TestCase
     public function testConstructorSetsProperties()
     {
         $plugin = new UsercentricsCustomBlocks('/test/path/');
-        
+
         // Use reflection to access private properties
         $reflection = new \ReflectionClass($plugin);
-        
+
         $pluginPathProperty = $reflection->getProperty('plugin_path');
         $pluginPathProperty->setAccessible(true);
-        
+
         $blocksPathProperty = $reflection->getProperty('blocks_path');
         $blocksPathProperty->setAccessible(true);
-        
+
         $pluginUrlProperty = $reflection->getProperty('plugin_url');
         $pluginUrlProperty->setAccessible(true);
-        
+
+        $pluginUrlToTest = 'http://example.com/wp-content/plugins/usercentrics-custom-blocks/';
+
         // Check properties were set correctly
         $this->assertEquals('/test/path/', $pluginPathProperty->getValue($plugin));
         $this->assertEquals('/test/path/build/', $blocksPathProperty->getValue($plugin));
-        $this->assertEquals('http://example.com/wp-content/plugins/usercentrics-custom-blocks/', $pluginUrlProperty->getValue($plugin));
+        $this->assertEquals($pluginUrlToTest, $pluginUrlProperty->getValue($plugin));
     }
 
     /**
@@ -81,28 +83,28 @@ class TestUsercentricsCustomBlocks extends TestCase
             ->setConstructorArgs(['/test/path/'])
             ->onlyMethods(['fileExists'])
             ->getMock();
-            
+
         $mockPlugin->method('fileExists')
             ->willReturn(true);
-            
+
         $blockName = 'test-block';
-        
+
         $expectedPath = '/test/path/build/' . $blockName . '/block.json';
-        
+
         WP_Mock::userFunction('register_block_type', [
             'times' => 1,
             'args' => [$expectedPath]
         ]);
-        
+
         $reflection = new \ReflectionClass($mockPlugin);
         $method = $reflection->getMethod('registerSingleBlock');
         $method->setAccessible(true);
-        
+
         $method->invoke($mockPlugin, $blockName);
-        
+
         $this->assertConditionsMet();
     }
-    
+
     /**
      * Test the registerSingleBlock method doesn't call register_block_type when file doesn't exist
      */
@@ -112,25 +114,25 @@ class TestUsercentricsCustomBlocks extends TestCase
             ->setConstructorArgs(['/test/path/'])
             ->onlyMethods(['fileExists'])
             ->getMock();
-    
+
         $mockPlugin->method('fileExists')
             ->willReturn(false);
-            
+
         $blockName = 'non-existent-block';
-        
+
         WP_Mock::userFunction('register_block_type', [
             'times' => 0
         ]);
-        
+
         $reflection = new \ReflectionClass($mockPlugin);
         $method = $reflection->getMethod('registerSingleBlock');
         $method->setAccessible(true);
-        
+
         $method->invoke($mockPlugin, $blockName);
-        
+
         $this->assertConditionsMet();
     }
-    
+
     /**
      * Test the registerBlocks method registers all blocks in the BLOCKS constant
      */
@@ -140,21 +142,21 @@ class TestUsercentricsCustomBlocks extends TestCase
             ->setConstructorArgs(['/test/path/'])
             ->onlyMethods(['registerSingleBlock', 'functionExists'])
             ->getMock();
-            
+
         $mockPlugin->method('functionExists')
             ->with('register_block_type')
             ->willReturn(true);
-            
+
         $mockPlugin->expects($this->exactly(count(UsercentricsCustomBlocks::BLOCKS)))
             ->method('registerSingleBlock')
             ->withConsecutive(
                 [$this->equalTo('faq-item')],
                 [$this->equalTo('faq-list')]
             );
-        
+
         $mockPlugin->registerBlocks();
     }
-    
+
     /**
      * Test the registerBlocks method skips when function_exists returns false
      */
@@ -166,32 +168,32 @@ class TestUsercentricsCustomBlocks extends TestCase
             ->setConstructorArgs(['/test/path/'])
             ->onlyMethods(['registerSingleBlock', 'functionExists'])
             ->getMock();
-            
+
         // Set up the mock to return false for function_exists
         $mockPlugin->method('functionExists')
             ->with('register_block_type')
             ->willReturn(false);
-            
+
         // Expect registerSingleBlock to never be called
         $mockPlugin->expects($this->never())
             ->method('registerSingleBlock');
-        
+
         $mockPlugin->registerBlocks();
     }
-    
+
     /**
      * Test the integration with WordPress hooks
      */
     public function testWordPressHooksIntegration()
     {
         $plugin = new UsercentricsCustomBlocks('/test/path/');
-        
+
         // Test that init action is added
         WP_Mock::expectActionAdded('init', [$plugin, 'registerBlocks']);
-        
+
         $plugin->init();
-        
+
         // Verify the action was added
         $this->assertConditionsMet();
     }
-} 
+}
