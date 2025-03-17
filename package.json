@@ -9,7 +9,8 @@
     "lint:css": "wp-scripts lint-style ./assets/**/*.{scss,css} --fix",
     "start": "wp-scripts start",
     "create-block": "cd ./assets/blocks && npx @wordpress/create-block@latest --no-plugin --namespace usercentrics-custom-blocks",
-    "zip": "wp-scripts plugin-zip"
+    "prepare-zip": "composer update -o --no-dev",
+    "zip": "npm run prepare-zip && wp-scripts plugin-zip"
   },
   "keywords": [],
   "author": "",
