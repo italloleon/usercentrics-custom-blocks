@@ -30,7 +30,7 @@
     "scripts": {
         "phpcs": "phpcs",
         "phpcbf": "phpcbf",
-        "test": ".vendor/bin/phpunit",
+        "test": "./vendor/bin/phpunit --verbose --color",
         "post-install-cmd": [
             "@install-hooks"
         ],
