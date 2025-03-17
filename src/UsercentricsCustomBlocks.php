@@ -53,13 +53,49 @@ class UsercentricsCustomBlocks
      */
     public function registerBlocks()
     {
-        // Register blocks here
-        if (function_exists('register_block_type')) {
+        if ($this->functionExists('register_block_type')) {
             $block_list = self::BLOCKS;
-            $blocks_path = $this->blocks_path;
             foreach ($block_list as $block) {
-                register_block_type($this->blocks_path . $block . '/block.json');
+                $this->registerSingleBlock($block);
             }
         }
+    }
+
+    /**
+     * Register a single block.
+     *
+     * This method is separated to make testing easier.
+     *
+     * @since    1.0.0
+     * @param    string    $block    Block name.
+     * @return   void
+     */
+    protected function registerSingleBlock($block)
+    {
+        if (!$this->fileExists($this->blocks_path . $block . '/block.json')) {
+            return;
+        }
+
+        register_block_type($this->blocks_path . $block . '/block.json');
+    }
+
+    /**
+     *
+     * @param string $path File path to check.
+     * @return bool Whether the file exists.
+     */
+    protected function fileExists($path)
+    {
+        return file_exists($path);
+    }
+
+    /**
+     *
+     * @param string $function Function name to check.
+     * @return bool Whether the function exists.
+     */
+    protected function functionExists($function)
+    {
+        return function_exists($function);
     }
 }
