@@ -125,9 +125,6 @@ The blocks in this plugin are built with accessibility in mind:
 
 - Semantic HTML structure
 - Proper ARIA attributes
-- Keyboard navigation support
-- Sufficient color contrast
-- Focus management
 
 ### SEO Optimization
 
@@ -136,15 +133,6 @@ The FAQ block includes schema.org markup for better search engine visibility:
 - Uses FAQPage schema for FAQ content
 - Structured data is automatically generated based on the content
 
-## Iterative Improvements
-
-The development approach for these blocks includes:
-
-1. **User Feedback Collection**: Implementing analytics and feedback mechanisms
-2. **A/B Testing**: Testing different designs and interactions
-3. **Performance Monitoring**: Regular performance audits
-4. **Accessibility Testing**: Regular audits with tools like Axe and manual testing
-5. **Continuous Integration**: Automated tests to ensure quality
 
 ## License
 
