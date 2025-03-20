@@ -53,12 +53,12 @@ class TestUsercentricsCustomBlocks extends TestCase
     public function testValidBlockRegistration()
     {
         // Create a test subclass that exposes the protected method
-        $plugin = new class('/test/path/') extends UsercentricsCustomBlocks {
+        $plugin = new class ('/test/path/') extends UsercentricsCustomBlocks {
             public function publicRegisterSingleBlock($block)
             {
                 return $this->registerSingleBlock($block);
             }
-            
+
             protected function fileExists($path)
             {
                 return true;
@@ -83,12 +83,12 @@ class TestUsercentricsCustomBlocks extends TestCase
      */
     public function testNonExistentBlockRegistration()
     {
-        $plugin = new class('/test/path/') extends UsercentricsCustomBlocks {
+        $plugin = new class ('/test/path/') extends UsercentricsCustomBlocks {
             public function publicRegisterSingleBlock($block)
             {
                 return $this->registerSingleBlock($block);
             }
-            
+
             protected function fileExists($path)
             {
                 return false;
@@ -111,14 +111,14 @@ class TestUsercentricsCustomBlocks extends TestCase
      */
     public function testRegisterBlocksRegistersAllBlocks()
     {
-        $plugin = new class('/test/path/') extends UsercentricsCustomBlocks {
+        $plugin = new class ('/test/path/') extends UsercentricsCustomBlocks {
             public $registeredBlocks = [];
-            
+
             protected function registerSingleBlock($block)
             {
                 $this->registeredBlocks[] = $block;
             }
-            
+
             protected function functionExists($function)
             {
                 return true;
@@ -135,14 +135,14 @@ class TestUsercentricsCustomBlocks extends TestCase
      */
     public function testRegisterBlocksSkipsWhenFunctionDoesntExist()
     {
-        $plugin = new class('/test/path/') extends UsercentricsCustomBlocks {
+        $plugin = new class ('/test/path/') extends UsercentricsCustomBlocks {
             public $registeredBlocks = [];
-            
+
             protected function registerSingleBlock($block)
             {
                 $this->registeredBlocks[] = $block;
             }
-            
+
             protected function functionExists($function)
             {
                 return false;
@@ -159,36 +159,35 @@ class TestUsercentricsCustomBlocks extends TestCase
      */
     public function testPluginConstructsProperBlockPaths()
     {
-        $testPlugin = new class('/test/path/') extends UsercentricsCustomBlocks {
+        $testPlugin = new class ('/test/path/') extends UsercentricsCustomBlocks {
             // Expose registerSingleBlock as a public method
             public function publicRegisterSingleBlock($block)
             {
                 return $this->registerSingleBlock($block);
             }
-            
+
             // Override fileExists to always return true for testing
             protected function fileExists($path)
             {
                 return true;
             }
         };
-        
+
         // The expected block path that should be constructed
         $blockName = 'test-block';
         $expectedPath = '/test/path/build/' . $blockName . '/block.json';
-        
+
         // Use WP_Mock to verify register_block_type is called with the correct path
         WP_Mock::userFunction('register_block_type', [
             'times' => 1,
             'args' => [$expectedPath],
             'return' => true
         ]);
-        
+
         // Call the public wrapper that will then call the real method with our path
         $testPlugin->publicRegisterSingleBlock($blockName);
-        
+
         // Verify our expectations
         $this->assertConditionsMet();
     }
-
 }
